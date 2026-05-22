@@ -1,0 +1,503 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agvera Portofolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --pink-dark: #6d28d9;
+            --pink-mid: #8b5cf6;
+            --pink-soft: #ddd6fe;
+            --pink-light: #f5f3ff;
+            --pink-hero: #c4b5fd;
+            --white: #fff;
+            --text-dark: #2e1065;
+            --text-mid: #5b21b6;
+            --accent: #a78bfa;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background-color: var(--white);
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+
+        /* ── NAV ── */
+        nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 60px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--pink-dark) 0%, var(--pink-mid) 100%);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 20px rgba(194, 24, 91, 0.35);
+        }
+
+        .navkiri {
+            font-family: 'Playfair Display', serif;
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--white);
+            letter-spacing: 0.5px;
+        }
+
+        .navkanan {
+            display: flex;
+            gap: 36px;
+            list-style: none;
+        }
+
+        .navkanan li a {
+            color: rgba(255,255,255,0.88);
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 500;
+            letter-spacing: 0.3px;
+            position: relative;
+            padding-bottom: 4px;
+            transition: color 0.2s;
+        }
+
+        .navkanan li a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--white);
+            border-radius: 2px;
+            transition: width 0.3s ease;
+        }
+
+        .navkanan li a:hover {
+            color: var(--white);
+        }
+
+        .navkanan li a:hover::after {
+            width: 100%;
+        }
+
+        /* ── HERO ── */
+        .home {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            align-items: center;
+            min-height: calc(100vh - 70px);
+            background: linear-gradient(160deg, var(--pink-light) 0%, var(--pink-soft) 60%, var(--pink-hero) 100%);
+            padding: 60px 80px;
+            gap: 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* decorative blob */
+        .home::before {
+            content: '';
+            position: absolute;
+            top: -80px;
+            right: 200px;
+            width: 420px;
+            height: 420px;
+            background: radial-gradient(circle, rgba(255,64,129,0.18) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .homekiri {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            animation: fadeUp 0.8s ease both;
+        }
+
+        .homekiri .badge {
+            display: inline-block;
+            background: rgba(194, 24, 91, 0.12);
+            color: var(--pink-dark);
+            font-size: 13px;
+            font-weight: 500;
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+            padding: 6px 16px;
+            border-radius: 50px;
+            border: 1px solid rgba(194,24,91,0.25);
+            width: fit-content;
+        }
+
+        .homekiri h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(42px, 5vw, 68px);
+            font-weight: 700;
+            color: var(--text-dark);
+            line-height: 1.1;
+        }
+
+        .homekiri h1 span {
+            color: var(--pink-dark);
+        }
+
+        .homekiri p {
+            font-size: 18px;
+            font-weight: 300;
+            color: var(--text-mid);
+            line-height: 1.7;
+            max-width: 420px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, var(--pink-dark), var(--accent));
+            color: var(--white);
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 500;
+            padding: 14px 32px;
+            border-radius: 50px;
+            width: fit-content;
+            box-shadow: 0 8px 24px rgba(194,24,91,0.35);
+            transition: transform 0.2s, box-shadow 0.2s;
+            margin-top: 8px;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 14px 32px rgba(194,24,91,0.45);
+        }
+
+        .btn::after {
+            content: '→';
+            font-size: 16px;
+        }
+
+        /* ── PHOTO ── */
+        .homekanan {
+            animation: fadeUp 0.9s 0.15s ease both;
+        }
+
+        .photo-wrapper {
+            position: relative;
+            width: 280px;
+        }
+
+        .photo-wrapper::before {
+            content: '';
+            position: absolute;
+            inset: -10px;
+            border: 3px solid var(--pink-dark);
+            border-radius: 40% 60% 55% 45% / 50% 45% 55% 50%;
+            opacity: 0.35;
+            animation: morphBorder 6s ease-in-out infinite alternate;
+        }
+
+        @keyframes morphBorder {
+            to { border-radius: 55% 45% 45% 55% / 45% 55% 45% 55%; }
+        }
+
+        .photo-wrapper img {
+            width: 280px;
+            height: 360px;
+            object-fit: cover;
+            border-radius: 38% 62% 52% 48% / 50% 44% 56% 50%;
+            display: block;
+            box-shadow: 0 20px 60px rgba(194,24,91,0.3);
+            transition: border-radius 0.6s ease;
+        }
+
+        .photo-wrapper img:hover {
+            border-radius: 50%;
+        }
+
+        /* ── ABOUT SECTION ── */
+        .about {
+            padding: 100px 80px;
+            background: var(--white);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .section-label {
+            font-size: 12px;
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--pink-dark);
+            margin-bottom: 12px;
+        }
+
+        .about h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 40px;
+            color: var(--text-dark);
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+
+        .about p {
+            color: var(--text-mid);
+            font-size: 16px;
+            line-height: 1.8;
+            margin-bottom: 16px;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .skill-card {
+            background: var(--pink-light);
+            border: 1px solid var(--pink-soft);
+            border-radius: 16px;
+            padding: 20px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 30px rgba(194,24,91,0.12);
+        }
+
+        .skill-card .icon {
+            font-size: 26px;
+            margin-bottom: 10px;
+        }
+
+        .skill-card h4 {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 4px;
+        }
+
+        .skill-card p {
+            font-size: 13px;
+            color: var(--text-mid);
+            margin: 0;
+        }
+
+        /* ── CONTACT SECTION ── */
+        .contact {
+            padding: 100px 80px;
+            background: linear-gradient(160deg, var(--pink-light) 0%, var(--pink-soft) 100%);
+            text-align: center;
+        }
+
+        .contact h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 42px;
+            color: var(--text-dark);
+            margin-bottom: 16px;
+        }
+
+        .contact p {
+            color: var(--text-mid);
+            font-size: 17px;
+            margin-bottom: 40px;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.7;
+        }
+
+        .contact-links {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .contact-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 28px;
+            border-radius: 50px;
+            font-size: 15px;
+            font-weight: 500;
+            text-decoration: none;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .contact-link.primary {
+            background: linear-gradient(135deg, var(--pink-dark), var(--accent));
+            color: var(--white);
+            box-shadow: 0 8px 24px rgba(194,24,91,0.3);
+        }
+
+        .contact-link.secondary {
+            background: var(--white);
+            color: var(--pink-dark);
+            border: 2px solid var(--pink-dark);
+        }
+
+        .contact-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 14px 32px rgba(194,24,91,0.25);
+        }
+
+        /* ── FOOTER ── */
+        footer {
+            background: linear-gradient(135deg, var(--pink-dark), var(--pink-mid));
+            color: rgba(255,255,255,0.85);
+            text-align: center;
+            padding: 28px 40px;
+            font-size: 14px;
+        }
+
+        footer span {
+            color: var(--white);
+            font-weight: 600;
+        }
+
+        /* ── ANIMATIONS ── */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 768px) {
+            nav { padding: 0 24px; }
+
+            .home {
+                grid-template-columns: 1fr;
+                padding: 50px 28px;
+                text-align: center;
+            }
+
+            .homekiri { align-items: center; }
+            .homekiri p { max-width: 100%; }
+
+            .photo-wrapper { margin: 0 auto; }
+
+            .about {
+                grid-template-columns: 1fr;
+                padding: 60px 28px;
+                gap: 40px;
+            }
+
+            .contact { padding: 60px 28px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAV -->
+    <nav>
+        <div class="navkiri">Agvera Portofolio</div>
+        <ul class="navkanan">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- HERO -->
+    <section class="home" id="home">
+        <div class="homekiri">
+            <p class="mini-text">• Informatics Student</p>
+            <h1>Hi, I'm <span>Agvera</span></h1>
+            <p>Mahasiswa Informatika yang sedang belajar dan mengembangkan kemampuan dibidang teknologi.</p>
+            <a href="#contact" class="btn">Contact Me</a>
+        </div>
+        <div class="homekanan">
+            <div class="photo-wrapper">
+                <img src="fotoagvera.png" class="Foto Saya">
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="about" id="about">
+
+    <div class="about-left">
+        <p class="section-label">Tentang Saya</p>
+
+        <h2>Mengenal Saya Lebih Dekat</h2>
+
+        <p class="about-desc">
+            Saya adalah mahasiswa Teknik Informatika yang suka belajar
+            hal baru terutama di bidang teknologi, desain, dan pemrograman.
+        </p>
+
+        <div class="mini-info">
+            <div class="info-box">
+                <h3>💻 Frontend</h3>
+                <p>HTML, CSS, JavaScript</p>
+            </div>
+
+            <div class="info-box">
+                <h3>🎨 UI Design</h3>
+                <p>Figma & Canva</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="about-right">
+
+        <div class="skill-card">
+            <span>💻</span>
+            <h3>Web Development</h3>
+            <p>Membuat website modern dan responsive.</p>
+        </div>
+
+        <div class="skill-card">
+            <span>🎨</span>
+            <h3>UI Design</h3>
+            <p>Desain interface yang clean dan aesthetic.</p>
+        </div>
+
+        <div class="skill-card">
+            <span>📊</span>
+            <h3>Programming</h3>
+            <p>Belajar Python, Java, dan C++.</p>
+        </div>
+
+        <div class="skill-card">
+            <span>🚀</span>
+            <h3>Problem Solving</h3>
+            <p>Melatih logika dan algoritma.</p>
+        </div>
+
+    </div>
+
+</section>
+
+    <!-- CONTACT -->
+    <section class="contact" id="contact">
+        <p class="section-label">Hubungi Saya</p>
+        <h2>Mari Terhubung!</h2>
+        <p>Terima kasih sudah mengunjungi portofolio saya. Jangan ragu untuk menghubungi saya.</p>
+        <div class="contact-links">
+            <a href="mailto:naila@email.com" class="contact-link primary">✉ Email Saya</a>
+            <a href="#" class="contact-link secondary">LinkedIn</a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>Copyright &copy; 2025 <span>Agvera Portofolio</span> — All Rights Reserved</p>
+    </footer>
+
+</body>
+</html>
